@@ -1,0 +1,15 @@
+convos={
+	"hi": "hey hi?",
+	"how are you doing?": "i'm doing good, how are you doing?",
+	"what are you doing?": "talking to you",
+	"what is the weather today?": "it is cloudy",
+	"is there any chance of rain?":"no",
+	"thank you": "your welcome",
+	}
+while True:
+	ui=input("you:")
+	if ui=="bye":
+		print("charliebot:bye")
+	else:
+		response=(ui)
+		print("charliebot:", convos[ui])
