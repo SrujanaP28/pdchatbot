@@ -1,0 +1,77 @@
+create table DepartmentalStore (
+StoreID int primary key,
+StoreName varchar(255),
+Address varchar(255),
+PhoneNo int
+);
+alter table DepartmentalStore 
+drop column PhoneNo;
+alter table DepartmentalStore 
+add column PhoneNo varchar(54);
+
+create table Product (
+ProductID int primary key,
+ProductName varchar(255),
+ProductPrice int
+);
+alter table Product
+drop column ProductPrice;
+alter table Product
+add column ProductPrice double;
+alter table Product
+add column Quantity varchar(54);
+
+create table Customer (
+CustomerID int,
+CustomerName varchar(255),
+Address varchar(255),
+PhoneNo int,
+ProductID int,
+StoreID int,
+foreign Key (ProductID) references Product(ProductID),
+foreign Key (StoreID) references DepartmentalStore(StoreID)
+);
+alter table Customer
+drop column PhoneNo;
+alter table Customer
+add PhoneNo varchar(50);
+
+
+insert into DepartmentalStore values ('1', 'Grace', '1st Main Road, Poompuhar Nagar Kolathur, Chennai-82', '9853423367');
+insert into DepartmentalStore values ('2', 'Happiee', '11th Main Road, Srinivasa Nagar Anna Naagr, Chennai-99', '6922389367'); 
+insert into DepartmentalStore values ('3', 'Fresh', 'No:23, 19th Street, Teachers Colony, Periyar Nagar, Chennai-89', '7892234115');
+insert into Product values ('1', 'Rice', '150.25', '1Kg');
+insert into Product values ('2', 'Wheat', '100.50', '1Kg');
+insert into Product values ('3', 'Dal', '110.75', '1Kg');
+insert into Product values ('4', 'Milk', '35', '1Pack');
+insert into Product values ('5', 'Eggs', '360', '12Eggs');
+insert into Product values ('6', 'Sugar', '60', '1Kg');
+insert into Product values ('7', 'Salt', '50', '1Kg');
+insert into Product values ('8', 'Oil', '80', '1l');
+insert into Product values ('9', 'Ghee', '200', '1Kg');
+insert into Product values ('10', 'Mixed Veggies', '250', '1Pack');
+insert into Product values ('11', 'Mixed Fruits', '310', '1Pack');
+insert into Customer values ('1', 'Raj', 'No:11 10th street, teachers colony', '1', '1', '9812345678');
+insert into Customer values ('1', 'Raj', 'No:11 10th street, teachers colony', '11', '1', '9812345678');
+insert into Customer values ('2', 'Shine', 'No:10 11th street, teachers colony', '2', '2', '9922137432');
+insert into Customer values ('2', 'Shine', 'No:10 11th street, teachers colony', '12', '2', '9922137432');
+insert into Customer values ('3', 'Sandy', 'No:45 5th street, besant colony', '3', '2', '9988467432');
+insert into Customer values ('3', 'Sandy', 'No:45 5th street, besant colony', '11', '2', '9988467432');
+insert into Customer values ('4', 'Sowmi', 'No:12, b block surya apartments, teachers colony', '1', '3', '9858872132');
+insert into Customer values ('4', 'Sowmi', 'No:12, b block surya apartments, teachers colony', '11', '3', '9858872132');
+insert into Customer values ('4', 'Sowmi', 'No:12, b block surya apartments, teachers colony', '12', '3', '9858872132');
+insert into Customer values ('4', 'Sowmi', 'No:12, b block surya apartments, teachers colony', '5', '3', '9858872132');
+insert into Customer values ('4', 'Sowmi', 'No:12, b block surya apartments, teachers colony', '4', '3', '9858872132');
+insert into Customer values ('5', 'Prem', 'No:8 34th street, gkm colony', '4', '1', '9955663472');
+insert into Customer values ('5', 'Prem', 'No:8 34th street, gkm colony', '8', '1', '9955663472');
+insert into Customer values ('5', 'Prem', 'No:8 34th street, gkm colony', '5', '1', '9955663472');
+insert into Customer values ('6', 'Ravi', 'No:1 2nd street, gkm colony', '7', '3', '9090067432');
+insert into Customer values ('7', 'Rajini', 'No:15 2nd street, besant colony', '8', '1', '9855775532');
+insert into Customer values ('8', 'Shob', 'No:11 3rd street, rajiv gandhi nagar', '8', '2', '9999507402');
+insert into Customer values ('8', 'Shob', 'No:11 3rd street, rajiv gandhi nagar', '9', '2', '9999507402');
+insert into Customer values ('8', 'Shob', 'No:11 3rd street, rajiv gandhi nagar', '10', '2', '9999507402');
+select * from Customer order by CustomerName asc; 
+select * from Customer order by CustomerID asc; 
+select Product.ProductName, Customer.CustomerName, Customer.PhoneNo
+from Product inner join Customer on Product.ProductID=Customer.ProductID;
+select * from Customer where StoreID=3;
